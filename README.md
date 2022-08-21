@@ -1,1 +1,1 @@
-# SoftUni
+# Solving homework tasks from SoftUni
