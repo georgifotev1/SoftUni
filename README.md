@@ -1,4 +1,4 @@
-# Solving homework tasks from SoftUni
+# Certificates from SoftUni
 
 [Programming basics certificate](https://softuni.bg/certificates/details/116932/e5dfba3b)  
 [Programming fundamentals certificate](https://softuni.bg/certificates/details/129323/dca0a7b2)  
