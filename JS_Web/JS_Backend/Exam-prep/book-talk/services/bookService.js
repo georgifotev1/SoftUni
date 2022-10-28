@@ -38,6 +38,9 @@ async function wishBook(bookId, userId) {
   await book.save();
 }
 
+async function getByUserWishing(userId) {
+  return Book.find({ wishings: userId }).lean();
+}
 module.exports = {
   create,
   update,
@@ -45,4 +48,5 @@ module.exports = {
   getById,
   deleteById,
   wishBook,
+  getByUserWishing,
 };
