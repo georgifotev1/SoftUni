@@ -58,50 +58,49 @@ cryptoController.post("/create", async (req, res) => {
   }
 });
 
-// bookController.get("/:id/edit", async (req, res) => {
-//   const book = await getById(req.params.id);
+cryptoController.get("/:id/edit", async (req, res) => {
+  const crypto = await getById(req.params.id);
 
-//   if (book.owner != req.user._id) {
-//     return res.redirect("/auth/login");
-//   }
+  if (crypto.owner != req.user._id) {
+    return res.redirect("/auth/login");
+  }
 
-//   res.render("edit", {
-//     title: "Edit Book",
-//     book,
-//   });
-// });
+  res.render("edit", {
+    title: "Edit Crypto",
+    crypto,
+  });
+});
 
-// bookController.post("/:id/edit", async (req, res) => {
-//   const book = await getById(req.params.id);
+cryptoController.post("/:id/edit", async (req, res) => {
+  const crypto = await getById(req.params.id);
 
-//   if (book.owner != req.user._id) {
-//     return res.redirect("/auth/login");
-//   }
+  if (crypto.owner != req.user._id) {
+    return res.redirect("/auth/login");
+  }
 
-//   const edited = {
-//     title: req.body.title,
-//     author: req.body.author,
-//     genre: req.body.genre,
-//     stars: Number(req.body.stars),
-//     imageUrl: req.body.imageUrl,
-//     review: req.body.review,
-//   };
+  const edited = {
+    title: req.body.title,
+    price: Number(req.body.price),
+    imageUrl: req.body.imageUrl,
+    description: req.body.description,
+    paymentMethod: req.body.paymentMethod,
+  };
 
-//   try {
-//     if (Object.values(edited).some((v) => !v)) {
-//       throw new Error("All fields are required");
-//     }
+  try {
+    if (Object.values(edited).some((v) => !v)) {
+      throw new Error("All fields are required");
+    }
 
-//     await update(req.params.id, edited);
-//     res.redirect(`/book/${req.params.id}/details`);
-//   } catch (error) {
-//     res.render("edit", {
-//       title: "Edit Book",
-//       book: Object.assign(edited, { _id: req.params.id }),
-//       errors: parseError(error),
-//     });
-//   }
-// });
+    await update(req.params.id, edited);
+    res.redirect(`/crypto/${req.params.id}/details`);
+  } catch (error) {
+    res.render("edit", {
+      title: "Edit Crypto",
+      crypto: Object.assign(edited, { _id: req.params.id }),
+      errors: parseError(error),
+    });
+  }
+});
 
 cryptoController.get("/:id/delete", async (req, res) => {
   const crypto = await getById(req.params.id);

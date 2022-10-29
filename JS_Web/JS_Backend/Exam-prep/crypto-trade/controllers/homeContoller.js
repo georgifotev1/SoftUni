@@ -14,6 +14,7 @@ homeController.get("/catalog", async (req, res) => {
   res.render("catalog", {
     title: "Catalog",
     cryptos,
+    search: req.query.search,
   });
 });
 
