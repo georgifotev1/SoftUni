@@ -13,8 +13,10 @@ const cryptoSchema = new Schema({
     type: Number,
     required: true,
     validate: {
-      validator: Number.isInteger,
-      message: "Price must be a positive number",
+      validator: (value) => {
+        value > 0;
+      },
+      message: "Price must be greater than 0",
     },
   },
   imageUrl: {
@@ -36,7 +38,7 @@ const cryptoSchema = new Schema({
     type: String,
     required: true,
   },
-  buts: { type: [Types.ObjectId], ref: "User", default: [] },
+  buys: { type: [Types.ObjectId], ref: "User", default: [] },
   owner: { type: Types.ObjectId, ref: "User", required: true },
 });
 

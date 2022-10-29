@@ -1,52 +1,51 @@
 const Crypto = require("../models/Crypto");
 
-// async function create(book) {
-//   return Book.create(book);
-// }
+async function create(crypto) {
+  return Crypto.create(crypto);
+}
 
-// async function update(id, book) {
-//   const existing = await Book.findById(id);
-//   existing.title = book.title;
-//   existing.author = book.author;
-//   existing.genre = book.genre;
-//   existing.stars = book.stars;
-//   existing.imageUrl = book.imageUrl;
-//   existing.review = book.review;
-//   await existing.save();
-// }
+async function update(id, crypto) {
+  const existing = await Crypto.findById(id);
+  existing.title = crypto.title;
+  existing.price = crypto.price;
+  existing.imageUrl = crypto.imageUrl;
+  existing.description = crypto.description;
+  existing.paymentMethod = crypto.paymentMethod;
+  await existing.save();
+}
 
-// async function deleteById(id) {
-//   await Book.findByIdAndRemove(id);
-// }
+async function deleteById(id) {
+  await Crypto.findByIdAndRemove(id);
+}
 
 async function getAll() {
   return Crypto.find({}).lean();
 }
 
-// async function getById(id) {
-//   return Book.findById(id).lean();
-// }
+async function getById(id) {
+  return Crypto.findById(id).lean();
+}
 
-// async function wishBook(bookId, userId) {
-//   const book = await Book.findById(bookId);
+async function buyCrypto(cryptoId, userId) {
+  const crypto = await Crypto.findById(cryptoId);
 
-//   if (book.wishings.includes(userId)) {
-//     throw new Error("Cannot wish twice");
-//   }
+  if (crypto.buys.includes(userId)) {
+    throw new Error("Cannot buy twice");
+  }
 
-//   book.wishings.push(userId);
-//   await book.save();
-// }
+  crypto.buys.push(userId);
+  await crypto.save();
+}
 
-// async function getByUserWishing(userId) {
-//   return Book.find({ wishings: userId }).lean();
-// }
+async function getByUserBuy(userId) {
+  return Crypto.find({ buys: userId }).lean();
+}
 module.exports = {
-  //   create,
-  //   update,
+  create,
+  update,
   getAll,
-  //   getById,
-  //   deleteById,
-  //   wishBook,
-  //   getByUserWishing,
+  getById,
+  deleteById,
+  buyCrypto,
+  getByUserBuy,
 };
