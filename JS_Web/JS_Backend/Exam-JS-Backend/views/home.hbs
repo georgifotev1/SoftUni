@@ -1,0 +1,48 @@
+{{!-- <section class="home" id="home">
+
+    <div class="row">
+
+        <div class="content">
+            <h3>BookTalk</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam deserunt nostrum accusamus. Nam alias
+                sit necessitatibus, aliquid ex minima at!</p>
+            <a href="/catalog" class="btn">See All</a>
+        </div>
+
+        <div class="swiper books-slider">
+            <div class="swiper-wrapper">
+                <img src="/static/image/book-1.png" alt=""></a>
+                <img src="/static/image/book-2.png" alt=""></a>
+                <img src="/static/image/book-3.png" alt=""></a>
+                <img src="/static/image/book-4.png" alt=""></a>
+                <img src="/static/image/book-5.png" alt=""></a>
+                <img src="/static/image/book-6.png" alt=""></a>
+            </div>
+            <img src="/static/image/stand.png" class="stand" alt="">
+        </div>
+
+    </div>
+
+</section> --}}
+
+
+<div class="container">
+    <div class="blog-message">
+        <h1 id="site-title">Blog</h1>
+        <h2 id="site-mid-title">Create your own world!</h2>
+    </div>
+    {{#if topThree}}
+    <div class="last-blogs">
+        {{#each topThree}}
+        {{> homeblog}}
+        {{/each}}
+    </div>
+    {{else}}
+    <!--If there are still no blog posts on the database -->
+    <article class="not-available-blogs">
+        <h1>No blogs created yet.</h1>
+    </article>
+
+    {{/if}}
+
+</div>

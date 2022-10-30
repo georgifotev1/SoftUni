@@ -1,25 +1,23 @@
+const { isGuest } = require("../middlewares/guards");
 const { register, login } = require("../services/userService");
 const { parseError } = require("../util/parser");
-const validator = require("validator");
 
 const authController = require("express").Router();
 
-authController.get("/register", (req, res) => {
+authController.get("/register", isGuest(), (req, res) => {
   res.render("register", {
     title: "Register Page",
   });
 });
 
-authController.post("/register", async (req, res) => {
+authController.post("/register", isGuest(), async (req, res) => {
   try {
-    if (validator.isEmail(req.body.email) == false) {
-      throw new Error("Inalid email");
-    }
-    if (req.body.username == "" || req.body.password == "") {
+    if (
+      req.body.username == "" ||
+      req.body.email == "" ||
+      req.body.password == ""
+    ) {
       throw new Error("All fields are required");
-    }
-    if (req.body.password.length < 5) {
-      throw new Error("Passwords must be at least 5 characters");
     }
     if (req.body.password != req.body.repass) {
       throw new Error("Passwords don`t match");
@@ -29,12 +27,11 @@ authController.post("/register", async (req, res) => {
       req.body.username,
       req.body.password
     );
-    // TODO check assignment if register creates session
     res.cookie("token", token);
-    res.redirect("/"); // TODO replace with redirect by assignment
+    res.redirect("/");
   } catch (error) {
+    console.log(error);
     const errors = parseError(error);
-    // TODO add error display to actual template from assignment
     res.render("register", {
       title: "Register Page",
       errors,
@@ -46,19 +43,18 @@ authController.post("/register", async (req, res) => {
   }
 });
 
-authController.get("/login", (req, res) => {
-  // TODO replace with actual view by assignment
+authController.get("/login", isGuest(), (req, res) => {
   res.render("login", {
     title: "Login Page",
   });
 });
 
-authController.post("/login", async (req, res) => {
+authController.post("/login", isGuest(), async (req, res) => {
   try {
     const token = await login(req.body.email, req.body.password);
 
     res.cookie("token", token);
-    res.redirect("/"); // TODO replace with redirect by assignment
+    res.redirect("/");
   } catch (error) {
     const errors = parseError(error);
     res.render("login", {

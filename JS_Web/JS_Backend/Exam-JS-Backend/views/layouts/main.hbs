@@ -1,0 +1,99 @@
+{{!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+</head>
+
+<body>
+    {{#if errors}}
+    <div class="errorContainer">
+        {{#each errors}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    <header class="header">
+
+        <div class="header">
+            <nav class="navbar">
+                <a href="/">Home</a>
+                <a href="/catalog">Catalog</a>
+                {{#if username}}
+                <a href="/profile">Profile</a>
+                <a href="/book/create">Create Review</a>
+                <a href="/auth/logout">Logout</a>
+                {{else}}
+                <a href="/auth/login">Login</a>
+                <a href="/auth/register">Register</a>
+                {{/if}}
+            </nav>
+        </div>
+
+    </header>
+
+    {{{body}}}
+
+</body>
+
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body>
+    {{#if errors}}
+    <div class="errorContainer">
+        {{#each errors}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+    {{/if}}
+
+    <div class="navigation">
+        <nav>
+            <img src="/static/images/logo.jpg">
+            <ul>
+                <!-- Guest users and Logged users -->
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">Blogs</a></li>
+                <!--For guest users-->
+                {{#unless username}}
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                <!--For loggin users-->
+                {{else}}
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/blog/create">Create Blog</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                {{/unless}}
+
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        {{{body}}}
+    </main>
+
+    <footer>Back-End 2022</footer>
+</body>
+
+</html>
