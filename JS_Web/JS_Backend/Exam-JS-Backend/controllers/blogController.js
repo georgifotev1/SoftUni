@@ -15,6 +15,7 @@ blogController.get("/:id/details", async (req, res) => {
   const blog = await getById(req.params.id);
   const owner = await findOwnerByID(blog.owner);
   const followers = await findOwnerByID(blog.follows);
+  console.log(followers);
   blog.ownerEmail = owner[0].email;
   blog.followers = followers.map((el) => el.email);
   console.log(blog.followers);
