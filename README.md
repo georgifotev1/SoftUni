@@ -4,3 +4,4 @@
 [Programming fundamentals certificate](https://softuni.bg/certificates/details/129323/dca0a7b2)  
 [JS Advanced certificate](https://softuni.bg/certificates/details/136465/d1a9500f)  
 [JS Applications certificate](https://softuni.bg/certificates/details/139603/b5256d42)
+[JS Back-End certificate](https://softuni.bg/certificates/details/146753/6aeffba4)
